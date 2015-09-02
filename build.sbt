@@ -9,3 +9,8 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 scalaVersion := "2.11.6"
 
 autoScalaLibrary := false
+
+libraryDependencies ++= Seq(
+  jdbc,
+  "com.typesafe.play" %% "anorm" % "2.3.6"
+  )
