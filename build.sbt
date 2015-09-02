@@ -12,5 +12,6 @@ autoScalaLibrary := false
 
 libraryDependencies ++= Seq(
   jdbc,
-  "com.typesafe.play" %% "anorm" % "2.3.6"
+  "com.typesafe.play" %% "anorm" % "2.3.6",
+  "mysql" % "mysql-connector-java" % "5.1.34"
   )

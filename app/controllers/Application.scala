@@ -1,5 +1,6 @@
 package controllers
 
+import play.api.data.Form
 import play.api.db.DB
 import play.api.mvc._
 import anorm._
@@ -19,20 +20,27 @@ object Application extends Controller {
     Ok(views.html.App.login())
   }
 
-  def loginCheck(username: String, password: String) = {
-    DB.withConnection("NCoding") { implicit c =>
-      val findUser: Row = SQL("Select count(*) as count from user where " +
-        "username={username} and password={password}").on("username" -> username,
-        "password"->password).apply().head
+  def loginCheck() = Action {
+    request => {
+      val postParams = request.body.asFormUrlEncoded.get;
+      val username = postParams.get("username").map(_.head).get;
+      val password = postParams.get("password").map(_.head).get;
 
-      val count:Int = findUser[Int]("count")
+      System.out.print(username + "    " +password)
+      DB.withConnection { implicit c =>
+        val findUser: Row = SQL("Select count(*) as count from user where " +
+          "username='"+username+"' and password='"+password+"'").apply().head
 
-      if(count >= 1){
-        //User found in database
-        Action{Redirect(routes.Application.index())}
-      } else {
-        //User not found in database
-        Action{Redirect(routes.Application.login())}
+        val count:Long = findUser[Long]("count")
+        System.out.print(Row);
+
+        if(count >= 1){
+          //User found in database
+          Redirect(routes.Application.index())
+        } else {
+          //User not found in database
+          Redirect(routes.Application.login())
+        }
       }
     }
   }
