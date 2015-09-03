@@ -2,6 +2,10 @@
 
 @main(title = "Data") {
     <table>
+            <tr>
+                <th>School Name</th>
+                <th>Grant Amount</th>
+            </tr>
             @data.slice(start,end).map { item =>
                 <tr>
                 <td>@item._1</td>
@@ -9,7 +13,7 @@
                 </tr>
             }
     </table>
-    <form method="get" action="/dataPage">
+    <form method="GET" action="/dataPage">
         @if(start>=25){
             <input type="hidden" name="start_prev" value="@{start-25}">
             <input type="hidden" name="end_prev" value="@{end-25}">
