@@ -1,0 +1,24 @@
+@(data:List[(String,String)],start:Int,end:Int,count:Long)
+
+@main(title = "Data") {
+    <table>
+            @data.slice(start,end).map { item =>
+                <tr>
+                <td>@item._1</td>
+                <td>@item._2</td>
+                </tr>
+            }
+    </table>
+    <form method="get" action="/dataPage">
+        @if(start>=25){
+            <input type="hidden" name="start_prev" value="@{start-25}">
+            <input type="hidden" name="end_prev" value="@{end-25}">
+            <input type="submit" value="Prev" name="prev">
+        }
+        @if(end < count){
+            <input type="hidden" name="start_next" value="@{start+25}">
+            <input type="hidden" name="end_next" value="@{end+25}">
+            <input type="submit" value="Next" name="next">
+        }
+    </form>
+}
