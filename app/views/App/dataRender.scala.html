@@ -1,5 +1,5 @@
 @(data:List[(String,String)],start:Int,end:Int,count:Long)
-
+@import play.api.libs.json.Json
 @main(title = "Data") {
     <div id="mainContent">
         <div id="tabularContent" style="width:600px;height:250px;float: left;margin: 50px">
@@ -28,16 +28,22 @@
                 }
             </form>
         </div>
-
         <div id="tester" align="right" style="width:600px;height:250px;float: right;margin: 50px"></div>
     </div>
-    <script>
-        TESTER = document.getElementById('tester');
-        var x = [];
-        var y = [];
-        Plotly.plot( TESTER, [{
-            x: [1, 2, 3, 4, 5],
-            y: [1, 2, 4, 8, 16] }], {
-            margin: { t: 0 } } );
+    <script type="application/javascript">
+        var TESTER = document.getElementById('tester');
+
+        var x = @Html(Json.stringify(Json.toJson(data.slice(start,end).map(item => {item._1.toString}))));
+        var y = @Html(Json.stringify(Json.toJson(data.slice(start,end).map(item => {item._2.toString}))));
+        Plotly.plot(TESTER, [
+                {
+                    x,y
+                }
+            ],
+            {
+                margin: {
+                    t: 0
+                }
+            });
     </script>
 }
