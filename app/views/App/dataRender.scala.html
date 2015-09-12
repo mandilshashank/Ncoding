@@ -1,28 +1,43 @@
 @(data:List[(String,String)],start:Int,end:Int,count:Long)
 
 @main(title = "Data") {
-    <table>
-            <tr>
-                <th>School Name</th>
-                <th>Grant Amount</th>
-            </tr>
-            @data.slice(start,end).map { item =>
-                <tr>
-                <td>@item._1</td>
-                <td>@item._2</td>
-                </tr>
-            }
-    </table>
-    <form method="GET" action="/dataPage">
-        @if(start>=25){
-            <input type="hidden" name="start_prev" value="@{start-25}">
-            <input type="hidden" name="end_prev" value="@{end-25}">
-            <input type="submit" value="Prev" name="prev">
-        }
-        @if(end < count){
-            <input type="hidden" name="start_next" value="@{start+25}">
-            <input type="hidden" name="end_next" value="@{end+25}">
-            <input type="submit" value="Next" name="next">
-        }
-    </form>
+    <div id="mainContent">
+        <div id="tabularContent" style="width:600px;height:250px;float: left;margin: 50px">
+            <table>
+                    <tr>
+                        <th>School Name</th>
+                        <th>Grant Amount</th>
+                    </tr>
+                    @data.slice(start,end).map { item =>
+                        <tr>
+                        <td>@item._1</td>
+                        <td>@item._2</td>
+                        </tr>
+                    }
+            </table>
+            <form method="GET" action="/dataPage">
+                @if(start>=25){
+                    <input type="hidden" name="start_prev" value="@{start-25}">
+                    <input type="hidden" name="end_prev" value="@{end-25}">
+                    <input type="submit" value="Prev" name="prev">
+                }
+                @if(end < count){
+                    <input type="hidden" name="start_next" value="@{start+25}">
+                    <input type="hidden" name="end_next" value="@{end+25}">
+                    <input type="submit" value="Next" name="next">
+                }
+            </form>
+        </div>
+
+        <div id="tester" align="right" style="width:600px;height:250px;float: right;margin: 50px"></div>
+    </div>
+    <script>
+        TESTER = document.getElementById('tester');
+        var x = [];
+        var y = [];
+        Plotly.plot( TESTER, [{
+            x: [1, 2, 3, 4, 5],
+            y: [1, 2, 4, 8, 16] }], {
+            margin: { t: 0 } } );
+    </script>
 }
