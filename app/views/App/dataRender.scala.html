@@ -1,6 +1,17 @@
 @(data:List[(String,String)],start:Int,end:Int,count:Long)
 @import play.api.libs.json.Json
 @main(title = "Data") {
+
+    <div style="margin: 5%; float: left" id="form_div">
+        <form id="state_form">
+
+        </form>
+    </div>
+    <div style="margin: 5%; float: right" id="form_logout">
+        <form id="logout_form" method="post" action="/dataPage">
+            <input type="submit" name="logout" value="Logout">
+        </form>
+    </div>
     <div id="mainContent">
         <div id="tabularContent" style="width:600px;height:250px;float: left;margin: 50px">
             <table>

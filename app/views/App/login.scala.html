@@ -1,5 +1,11 @@
+@(error:String)
 @main(title = "Home") {
 <form action="/loginCheck" method="post">
+    @if(error=="true"){
+        <div id="error_div" style="display: block ;margin-left: 40%; margin-top: 5%">
+            <p style="color: red">The username or password does not exist</p>
+        </div>
+    }
     <div style="margin-left: 40%; margin-top: 5%">
         Username : <input type="text" name="username" />
         <br/><br/>

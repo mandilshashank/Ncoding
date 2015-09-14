@@ -1,6 +1,8 @@
 GET     /               controllers.Application.index
 GET     /hello          controllers.Application.sayHello
-GET     /login          controllers.Application.login
+GET     /login          controllers.Application.login(error:String ?= "false")
+GET     /login/:error   controllers.Application.login(error:String)
 POST    /loginCheck     controllers.Application.loginCheck
 
+POST    /dataPage       controllers.Application.dataPage
 GET     /dataPage       controllers.Application.dataPage
