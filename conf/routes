@@ -1,4 +1,4 @@
-GET     /               controllers.Application.index
+GET     /               controllers.Application.login(error:String ?= "false")
 GET     /hello          controllers.Application.sayHello
 GET     /login          controllers.Application.login(error:String ?= "false")
 GET     /login/:error   controllers.Application.login(error:String)
