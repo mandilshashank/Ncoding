@@ -16,5 +16,5 @@ How to load data onto your mysql server:
    https://github.com/mandilshashank/Ncoding/blob/master/NCoding.sql
 2) Download the dump file 
 3) Upload dump by running the following command
-    mysql -p -u <user> < <Path to Ncoding.sql>
+    mysql -p -u <user> < {Path to Ncoding.sql}
 
